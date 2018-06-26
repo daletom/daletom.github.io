@@ -1,0 +1,27 @@
+- arr = []
+- arr << {title: 'Denmark', descr: 'Maxime vero sunt consequatur nemo', pic: 'https://tom.imgix.net/maksym-potapenko-598188-unsplash.jpg?q=80&auto=format,compress&crop=entropy&cs=tinysrgb&w=220&h=180&dpr=2&fit=crop'}
+- arr << {title: 'Germany', descr: 'need to add', pic: 'https://tom.imgix.net/schwerin.jpg?q=80&auto=format,compress&crop=entropy&cs=tinysrgb&w=220&h=180&dpr=2&fit=crop'}
+- arr << {title: 'Estonia', descr: 'Ut fuga facere tempore iste', pic: 'https://tom.imgix.net/tallinn.jpg?q=80&auto=format,compress&crop=edges&cs=tinysrgb&w=220&h=180&dpr=2&fit=crop'}
+- arr << {title: 'Russia', descr: 'Ut fuga facere tempore iste', pic: 'https://tom.imgix.net/petersburg.jpg?q=81&auto=format,compress&crop=entropy&cs=tinysrgb&w=220&h=180&dpr=2&fit=crop'}
+- arr << {title: 'Finland', descr: 'Maxime vero sunt consequatur nemo', pic: 'https://tom.imgix.net/helsinki.jpg?q=80&auto=format,compress&crop=entropy&cs=tinysrgb&w=220&h=180&dpr=2&fit=crop'}
+- arr << {title: 'Sweden', descr: 'Dolorum consequuntur at commodi', pic: 'https://tom.imgix.net/sweden.jpg?q=81&auto=format,compress&crop=entropy&cs=tinysrgb&w=220&h=180&dpr=2&fit=crop'}
+
+%article
+  %aside
+    %img(src="https://tom.imgix.net/norwegian-breakaway.jpg?q=80&crop=focalpoint&fp-x=.6&w=400&h=400&fit=crop" alt="")/
+  
+  %section
+    %h1 Our Baltic Cruise
+    .teaser
+     
+      - arr.each do |item|
+        %figure
+          %img(src="#{item[:pic]}" alt="")/
+          %figcaption
+            %h3= item[:title]
+   
+    %p
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium fugiat harum quas ipsum autem assumenda molestiae iste quidem, illo laboriosam voluptas cupiditate reprehenderit labore eaque necessitatibus molestias. Sed, accusantium illum?
+     
+    %p
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum facere laudantium ut debitis inventore maiores aliquam optio illo, ipsum aliquid dolorum sapiente quos sequi. Cumque animi explicabo culpa corporis iure.
