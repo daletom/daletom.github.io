@@ -1,134 +1,493 @@
-<html lang="en"><head>
-<meta charset="utf-8">
-<title>AM Test</title>
-<link href="https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple" rel="stylesheet" type="text/css">
-<style>
-* { box-sizing: border-box; }
-body, figure, aside { margin: 0; }
-img { display: block; width: 100%; }
+<html lang="en">
 
-body {
-	color: dark-gray;
-	font-family: Rancho, sans-serif;
-	text-align: center;
-}
-h1, h2 {
-	font-family: Rancho, cursive;
-	margin: 0.125em;
-}
-h1 {
-	font-size: 4em;
-	margin: 0.5em;
-	text-align: center;
-
-}
-
-figure {
-	padding: 1px;
-}
-
-figcaption {
-	display: block;
-	margin: 0;
-	text-align: center;
-	font-weight: bold;
-	color: white;
-	position: relative;
-	top: -3em;
-	text-shadow: 1px 1px 1px #000;
-	height: 0;
-	padding: 0;
-	font-size: 1.125em;
-}
-aside {
-	padding: 3em 1em;
-	text-align: left;
-}
-ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	margin-left: 1em;
-}
-li {
-	margin: 1em;
-	text-indent: -0.5em;
-}
-a {
-	text-decoration: none;
-	color: inherit;
-	border-bottom: 1px solid #00bbff;
-}
-a:hover {
-	color: #00bbff;
-}
-
-@media (min-width: 36em) {
-	figure {
-		display: block;
-		float: left;
-		width: 33.3333333333333%;
-		}
-	main {
-		float: left;
-		width: calc(100% - 12rem);
-	}
-	aside {
-		float: right;
-		width: 12rem;
-		padding: 0;
-		margin: 0;
-		font-size: 0.875em;
-		}
-	aside h2 {
-		margin-left: 0.5em;
-		margin-top: -0.5em;
-	}
-}
-</style>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A site to watch for the new baby dale.">
+    <meta property="og:title" content="Is Baby Dale Born?">
+    <meta property="og:description" content="A site to watch for the new baby dale.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://tom.imgix.net/heather_38.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65">
+    <meta property="og:url" content="https://www.thedales.me/">
+    <link rel="shortcut icon" type="image/png" href="https://tom.imgix.net/dales32_red.png" />
+    <title>Is Baby Dale Born?</title>
 </head>
+<style>
+    body {
+        background-color: #FCF8E1;
+    }
+
+    .splitflap {
+        position: relative;
+        min-width: 100px;
+        height: 100px;
+        margin: 10px;
+        line-height: 100px;
+        font-size: 100px;
+        font-family: Monospace;
+        text-align: center;
+        color: white;
+    }
+
+    .center {
+        position: relative;
+        left: 0;
+        margin-top: -50px;
+        width: 100%;
+        display: flex;
+    }
+
+    @media screen and (min-width: 1200px) {
+        .center {
+            justify-content: center;
+        }
+    }
+
+    .top {
+        position: relative;
+        height: 50%;
+        width: 100%;
+        background-color: #3BB6EB;
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    div.center {
+        perspective: 500px;
+    }
+
+    .bottom {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        margin-top: -50%;
+        border-radius: 10px 10px 10px 10px;
+        z-index: -1;
+        background-color: black;
+        background-image: linear-gradient(rgba(59, 182, 235, 0), #3BB6EB);
+        transform-origin: center;
+    }
+
+    .nextHalf {
+        position: relative;
+        height: 50%;
+        width: 100%;
+        margin-top: -100%;
+        overflow: hidden;
+        border-radius: 10px 10px 0 0;
+        z-index: 2;
+        background-color: black;
+        background-image: linear-gradient(#3BB6EB, rgba(59, 182, 235, 0));
+        transform-origin: bottom;
+    }
+
+    .nextFull {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        background-color: #3BB6EB;
+        margin-top: -50%;
+        border-radius: 10px 10px 10px 10px;
+        z-index: -3;
+    }
+
+    .flip1 {
+        animation: flip1 ease-in 1;
+        animation-duration: 1s;
+    }
+
+    .flip2 {
+        animation: flip2 ease-out 1;
+        animation-duration: 1s;
+    }
+
+    @keyframes flip1 {
+        0% {
+            transform: rotateX(0deg);
+            background-color: #3BB6EB;
+        }
+
+        50% {
+            transform: rotateX(90deg);
+            background-color: black;
+        }
+
+        100% {
+            transform: rotateX(90deg);
+        }
+    }
+
+    @keyframes flip2 {
+        0% {
+            transform: rotateX(-90deg);
+        }
+
+        50% {
+            transform: rotateX(-90deg);
+        }
+
+        100% {
+            transform: rotateX(0deg);
+            background-color: #3BB6EB;
+        }
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 6em;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 4em;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    @keyframes slider {
+        0% {
+            left: 0;
+            opacity: 0;
+        }
+
+        2% {
+            opacity: 1;
+        }
+
+        10% {
+            left: 0;
+            opacity: 1;
+        }
+
+        11% {
+            opacity: 0;
+        }
+
+        12% {
+            opacity: 0;
+        }
+
+        13% {
+            left: -400px;
+            opacity: 1;
+        }
+
+        20% {
+            left: -400px;
+            opacity: 1;
+        }
+
+        21% {
+            opacity: 0;
+        }
+
+        23% {
+            opacity: 0;
+        }
+
+        24% {
+            left: -800px;
+            opacity: 1;
+        }
+
+        31% {
+            left: -800px;
+            opacity: 1;
+        }
+
+        32% {
+            opacity: 0;
+        }
+
+        34% {
+            opacity: 0;
+        }
+
+        35% {
+            left: -1200px;
+            opacity: 1;
+        }
+
+        44% {
+            left: -1200px;
+            opacity: 1;
+        }
+
+        45% {
+            opacity: 0;
+        }
+
+        47% {
+            opacity: 0;
+        }
+
+        48% {
+            left: -1600px;
+            opacity: 1;
+        }
+
+        57% {
+            left: -1600px;
+            opacity: 1;
+        }
+
+        58% {
+            opacity: 0;
+        }
+
+        59% {
+            opacity: 0;
+        }
+
+        60% {
+            left: -2000px;
+            opacity: 1;
+        }
+
+        69% {
+            left: -2000px;
+            opacity: 1;
+        }
+
+        70% {
+            opacity: 0;
+        }
+
+        71% {
+            opacity: 0;
+        }
+
+        72% {
+            left: -2400px;
+            opacity: 1;
+        }
+
+        80% {
+            left: -2400px;
+            opacity: 1;
+        }
+
+        81% {
+            opacity: 0;
+        }
+
+        82% {
+            opacity: 0;
+        }
+
+        83% {
+            left: -2800px;
+            opacity: 1;
+        }
+
+        89% {
+            left: -2800px;
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 0;
+        }
+
+        91% {
+            opacity: 0;
+        }
+
+        92% {
+            left: -3200px;
+            opacity: 1;
+        }
+
+        99% {
+            left: -3200px;
+            opacity: 0;
+        }
+
+        100% {
+            left: 0;
+            opacity: 0;
+        }
+    }
+
+    div#slidercontainer {
+        position: relative;
+        overflow: hidden;
+        background: #000;
+        margin-left: calc(50% - 200px);
+    }
+
+    div#slidercontainer {
+        width: 400px;
+        height: 533px;
+    }
+
+    div#slider img {
+        width: 400px;
+        height: 533px;
+        float: left;
+    }
+
+    div#slider {
+        position: absolute;
+        width: 3200px;
+        animation-name: slider;
+        animation-duration: 24s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    div#slider:hover {
+        animation-play-state: paused;
+    }
+
+    div#slider img {
+        float: right;
+    }
+
+    div#slidercontainer:after {
+        content: "❚❚";
+        font-size: 150px;
+        position: absolute;
+        z-index: 12;
+        color: rgba(255, 255, 255, 0);
+        left: 150px;
+        top: 80px;
+        transition: 1s all ease-in-out;
+    }
+
+    div#slidercontainer:hover:after {
+        color: rgba(255, 255, 255, 0.6);
+    }
+</style>
 
 <body>
+    <h1>Is Baby Dale...</h1>
+    <div class="center">
+    </div>
+    <h2>Official Due Date is June 27th.</h2>
+    <div id="slidercontainer">
+        <div id="slider">
+            <img src="https://tom.imgix.net/heather_38.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="38">
+            <img src="https://tom.imgix.net/heather_37.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="37">
+            <img src="https://tom.imgix.net/heather_36.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="36">
+            <img src="https://tom.imgix.net/heather_32.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="32">
+            <img src="https://tom.imgix.net/heather_28.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="28">
+            <img src="https://tom.imgix.net/heather_24.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="24">
+            <img src="https://tom.imgix.net/heather_20.jpg?w=400&auto=format,compress&cs=tinysrgb&q=65" alt="20">
+            <img src="https://tom.imgix.net/heather_16.jpg?w=400&h=533&fit=crop&crop=focalpoint&fp-y=.6&fp-z=1.4&auto=format,compress&cs=tinysrgb&q=65"
+                alt="16">
+        </div>
+    </div>
+</body>
+<script>
+    // Set up flaps ////////////////////////////////////////////
+    speed = .2; // seconds
+    beginStr = "Born Yet?".toUpperCase().split("");
+    endStr = "Not Yet!".toUpperCase().split("");
+    // A-Z, 0-9, spaces only
 
-<h1>AM Test</h1>
+    amountOfFlaps = (beginStr.length >= endStr.length) ? beginStr.length : endStr.length;
 
-<main>
+    div = document.querySelector(".center");
+    html = "";
+    for (var x = 0; x < amountOfFlaps; x++) {
+        html += '<div class=splitflap><div class="top"></div><div class="bottom"></div><div class="nextHalf"></div><div class="nextFull"></div></div>';
+    }
 
-<figure><img src="https://tom.imgix.net/deathstar.jpg?q=80&fm=png&chromasub=444&usm=10&w=400&h=400&fit=crop&mark64=aHR0cHM6Ly90b20uaW1naXgubmV0L2tyZW5uaWNfcHJvZmlsZS5wbmc_dz0yMDAmaD0yMDAmbWFzaz1lbGxpcHNlJmZpdD1jcm9wJnVzbT0yMCZjcm9wPWZvY2FscG9pbnQmZnAteT0uMTgmZnAtej0yLjg&marky=60&markalign=center&blur=40&txt64=QFRvbQ&txtfit=max&txtclr=fff&txtfont64=SGVsdmV0aWNhTmV1ZS1UaGlu&txtalign=center&txtpad=80&txtsize=48&border=10%2C73ff0000&sat=60&vib=20&txtline=.5&txtlineclr=ff0000" alt="Tom"><figcaption>
-Tom
-</figcaption></figure><!--
-
---><figure><img src="https://assets.imgix.net/unsplash/citystreet.jpg?fm=png&chromasub=444&usm=10&w=400&h=400&fit=crop&marky=60&markalign=center&blur=50&txt64=8J-RnCBBbmEg8J-RoA&txtfit=max&txtclr=fff&txtfont64=QXZlbmlyLUJsYWNr&txtalign=center&txtpad=80&txtsize=48&border=10%2C2fff&sat=70&vib=20&mark64=aHR0cHM6Ly9hbmEuaW1naXgubmV0L0xJcGljdHVyZS5wbmc_dz0yMDAmaD0yMDAmbWFzaz1lbGxpcHNlJmZtPXBuZyZmaXQ9ZmFjZWFyZWEmZmFjZWluZGV4PTEmZmFjZXBhZD0yJnVzbT0yMCZib3JkZXI9MTAsZmZm" alt="Ana"><figcaption>
-Ana
-</figcaption></figure><!--
-
---><figure><img src="https://margieimgix.imgix.net/margie+mount+rushmore.jpg?q=80&fm=png&chromasub=444&usm=10&w=400&h=400&fit=crop&mark64=aHR0cHM6Ly9tYXJnaWVpbWdpeC5pbWdpeC5uZXQvbWFyZ2llK21vdW50K3J1c2htb3JlLmpwZz91c209MjAmZmFjZXBhZD0yLjUmZmFjZWluZGV4PTEmZml0PWZhY2VhcmVhJmZtPXBuZyZtYXNrPWVsbGlwc2UmaD0yMDAmdz0yMDA&marky=60&markalign=center&blur=120&txt64=8J-NlSBATWFyZ2ll&txtfit=max&txtclr=fff&txtfont64=SGVsdmV0aWNhTmV1ZS1UaGlu&txtalign=center&txtpad=80&txtsize=48&border=10%2C2fff&sat=60&vib=20" alt="Margie"><figcaption>
-Margie
-</figcaption></figure><!--
-
---><figure><img src="https://tom.imgix.net/deathstar.jpg?q=80&fm=png&chromasub=444&usm=10&w=400&h=400&fit=crop&mark64=aHR0cHM6Ly90b20uaW1naXgubmV0L2tyZW5uaWNfcHJvZmlsZS5wbmc_dz0yMDAmaD0yMDAmbWFzaz1lbGxpcHNlJmZpdD1jcm9wJnVzbT0yMCZjcm9wPWZvY2FscG9pbnQmZnAteT0uMTgmZnAtej0yLjg&marky=60&markalign=center&blur=40&txt64=QFRvbQ&txtfit=max&txtclr=fff&txtfont64=SGVsdmV0aWNhTmV1ZS1UaGlu&txtalign=center&txtpad=80&txtsize=48&border=10%2C73ff0000&sat=60&vib=20&txtline=.5&txtlineclr=ff0000" alt="Tom"><figcaption>
-Tom
-</figcaption></figure><!--
-
---><figure><img src="https://assets.imgix.net/unsplash/citystreet.jpg?fm=png&chromasub=444&usm=10&w=400&h=400&fit=crop&marky=60&markalign=center&blur=50&txt64=8J-RnCBBbmEg8J-RoA&txtfit=max&txtclr=fff&txtfont64=QXZlbmlyLUJsYWNr&txtalign=center&txtpad=80&txtsize=48&border=10%2C2fff&sat=70&vib=20&mark64=aHR0cHM6Ly9hbmEuaW1naXgubmV0L0xJcGljdHVyZS5wbmc_dz0yMDAmaD0yMDAmbWFzaz1lbGxpcHNlJmZtPXBuZyZmaXQ9ZmFjZWFyZWEmZmFjZWluZGV4PTEmZmFjZXBhZD0yJnVzbT0yMCZib3JkZXI9MTAsZmZm" alt="Ana"><figcaption>
-Ana
-</figcaption></figure><!--
-
---><figure><img src="https://margieimgix.imgix.net/margie+mount+rushmore.jpg?q=80&fm=png&chromasub=444&usm=10&w=400&h=400&fit=crop&mark64=aHR0cHM6Ly9tYXJnaWVpbWdpeC5pbWdpeC5uZXQvbWFyZ2llK21vdW50K3J1c2htb3JlLmpwZz91c209MjAmZmFjZXBhZD0yLjUmZmFjZWluZGV4PTEmZml0PWZhY2VhcmVhJmZtPXBuZyZtYXNrPWVsbGlwc2UmaD0yMDAmdz0yMDA&marky=60&markalign=center&blur=120&txt64=8J-NlSBATWFyZ2ll&txtfit=max&txtclr=fff&txtfont64=SGVsdmV0aWNhTmV1ZS1UaGlu&txtalign=center&txtpad=80&txtsize=48&border=10%2C2fff&sat=60&vib=20" alt="Margie"><figcaption>
-Margie
-</figcaption></figure></main>
-
-<aside>
-<h2>Font on the Side</h2>
-<ul>
-<li><a href="http://www.imgix.com">Tom</a></li>
-<li><a href="http://www.imgix.com">Ana</a></li>
-<li><a href="http://www.imgix.com">Margie</a></li>
-<li><a href="http://www.imgix.com">Tom</a></li>
-<li><a href="http://www.imgix.com">Ana</a></li>
-<li><a href="http://www.imgix.com">Margie</a></li>
-</ul>
-</aside>
+    div.innerHTML = html;
 
 
-</body></html>
+    // Set up more stuff ///////////////////////////////////////
+    a1 = document.querySelectorAll(".top");
+    a2 = document.querySelectorAll(".bottom");
+    b1 = document.querySelectorAll(".nextFull");
+    b2 = document.querySelectorAll(".nextHalf");
+
+    for (var x = 0; x < a1.length; x++) {
+        a2[x].style.animationDuration = speed + "s";
+        b2[x].style.animationDuration = speed + "s";
+    }
+
+
+    // And even more ///////////////////////////////////////////
+    char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+        'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '?', '!', ' '];
+
+    strCount = [], flag = [];
+
+    for (var x = 0; x < amountOfFlaps; x++) {
+
+        if (beginStr.length != amountOfFlaps) {
+            for (var x = 0; x < amountOfFlaps - beginStr.length; x++) {
+                beginStr.push(" ");
+            }
+        }
+        else if (endStr.length != amountOfFlaps) {
+            for (var x = 0; x < amountOfFlaps - endStr.length; x++) {
+                endStr.push(" ");
+            }
+        }
+    }
+    for (var x = 0; x < amountOfFlaps; x++) {
+        strCount[x] = char.indexOf(beginStr[x]);
+        flag[x] = false, flag2 = true;
+    }
+
+    // Flip them flaps /////////////////////////////////////////
+    setInterval(function () {
+        for (var x = 0; x < amountOfFlaps; x++) {
+
+            if (b1[x].innerHTML == endStr[x]) dontFlipIt(x);
+            else flipIt(x);
+
+            if (flag.every(function (e) {
+                return e
+            }) && flag2) flag2 = false, changeDestination();
+        }
+
+    }, speed * 1000);
+
+
+    ////////////////////////////////////////////////////////////
+    // Flap flipping functions /////////////////////////////////
+    ////////////////////////////////////////////////////////////
+    function flipIt(x) {
+        a1[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+        a2[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+        b1[x].innerHTML = char[strCount[x]];
+        b2[x].innerHTML = char[strCount[x]];
+
+        a2[x].classList.remove("flip1");
+        a2[x].offsetWidth = a2[x].offsetWidth;
+        a2[x].classList.add("flip1");
+        b2[x].classList.remove("flip2");
+        b2[x].offsetWidth = b2[x].offsetWidth;
+        b2[x].classList.add("flip2");
+
+        if (strCount[x] > char.length - 2) strCount[x] = 0;
+        else strCount[x]++;
+    }
+
+    function dontFlipIt(x) {
+        flag[x] = true;
+        a2[x].classList.remove("flip2");
+        a2[x].style.backgroundColor = "#3BB6eB";
+        b2[x].style.backgroundColor = "#3BB6eB";
+        a1[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+        a2[x].innerHTML = char[(strCount[x] == 0) ? char.length - 1 : strCount[x] - 1];
+    }
+
+    function changeDestination() {
+        setTimeout(function () {
+            flag.fill(false);
+            flag2 = true;
+
+            var tempArr = endStr.slice();
+            endStr = beginStr.slice();
+            beginStr = tempArr.slice();
+        }, 3000);
+    }
+</script>
+
+</html>
